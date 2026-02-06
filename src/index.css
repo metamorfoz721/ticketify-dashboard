@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* Dark mode uses data-theme attribute */
+@variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* ============================================
+   Tailwind v4 Theme Registration
+   Maps CSS custom properties to Tailwind utilities
+   ============================================ */
+@theme {
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on-surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-outline: var(--outline);
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+  --color-surface-tint: var(--surface-tint);
+}
+
+/* ============================================
+   Light Mode (Default)
+   ============================================ */
+:root {
+  --hue: 260;
+
+  /* OKLCH Base Values */
+  --primary-oklch: 65% 0.2 var(--hue);
+  --primary-container-oklch: 92% 0.04 var(--hue);
+  --secondary-oklch: 75% 0.08 var(--hue);
+  --secondary-container-oklch: 90% 0.04 var(--hue);
+  --surface-oklch: 98% 0.01 var(--hue);
+  --surface-variant-oklch: 94% 0.02 var(--hue);
+  --on-surface-oklch: 15% 0.02 var(--hue);
+  --outline-oklch: 55% 0.03 var(--hue);
+  --error-oklch: 60% 0.2 25;
+
+  /* MD3 Tonal Surfaces */
+  --surface-container-lowest: oklch(100% 0 var(--hue));
+  --surface-container-low: oklch(96% 0.01 var(--hue));
+  --surface-container: oklch(94% 0.02 var(--hue));
+  --surface-container-high: oklch(92% 0.03 var(--hue));
+  --surface-container-highest: oklch(90% 0.04 var(--hue));
+
+  /* Resolved Colors */
+  --primary: oklch(var(--primary-oklch));
+  --primary-container: oklch(var(--primary-container-oklch));
+  --on-primary: #ffffff;
+  --on-primary-container: oklch(25% 0.12 var(--hue));
+  --secondary: oklch(var(--secondary-oklch));
+  --secondary-container: oklch(var(--secondary-container-oklch));
+  --on-secondary-container: oklch(20% 0.06 var(--hue));
+  --surface: var(--surface-container-lowest);
+  --surface-variant: var(--surface-container-highest);
+  --on-surface: oklch(var(--on-surface-oklch));
+  --on-surface-variant: oklch(45% 0.04 var(--hue));
+  --outline: oklch(var(--outline-oklch));
+  --error: oklch(var(--error-oklch));
+  --on-error: #ffffff;
+  --error-container: oklch(93% 0.06 25);
+  --on-error-container: oklch(30% 0.15 25);
+  --surface-tint: oklch(var(--primary-oklch));
+}
+
+/* ============================================
+   Dark Mode
+   ============================================ */
+[data-theme='dark'] {
+  --primary-oklch: 75% 0.18 var(--hue);
+  --primary-container-oklch: 28% 0.12 var(--hue);
+  --secondary-container-oklch: 22% 0.10 var(--hue);
+  --on-surface-oklch: 95% 0.02 var(--hue);
+  --outline-oklch: 60% 0.06 var(--hue);
+
+  /* MD3 Tonal Surfaces Dark - Dengeli Renkli */
+  --surface-container-lowest: oklch(10% 0.06 var(--hue));
+  --surface-container-low: oklch(13% 0.07 var(--hue));
+  --surface-container: oklch(16% 0.08 var(--hue));
+  --surface-container-high: oklch(20% 0.09 var(--hue));
+  --surface-container-highest: oklch(24% 0.10 var(--hue));
+
+  /* Resolved Overrides */
+  --primary: oklch(var(--primary-oklch));
+  --primary-container: oklch(var(--primary-container-oklch));
+  --on-primary: oklch(10% 0.03 var(--hue));
+  --on-primary-container: oklch(90% 0.08 var(--hue));
+  --secondary: oklch(72% 0.14 var(--hue));
+  --secondary-container: oklch(var(--secondary-container-oklch));
+  --on-secondary-container: oklch(90% 0.06 var(--hue));
+  --surface: var(--surface-container-lowest);
+  --surface-variant: var(--surface-container-highest);
+  --on-surface: oklch(var(--on-surface-oklch));
+  --on-surface-variant: oklch(78% 0.05 var(--hue));
+  --outline: oklch(var(--outline-oklch));
+  --error: oklch(80% 0.15 25);
+  --on-error: oklch(20% 0.08 25);
+  --error-container: oklch(25% 0.1 25);
+  --on-error-container: oklch(90% 0.06 25);
+  --surface-tint: oklch(var(--primary-oklch));
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+body {
+  margin: 0;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--surface);
+  color: var(--on-surface);
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   MD3 Component Classes
+   ============================================ */
+.md3-card {
+  background-color: var(--surface-container-high);
+  border-radius: 24px;
+  border: none;
+  box-shadow: none;
+  transition: background-color 0.2s ease;
+}
+
+
+.md3-input,
+.md3-textfield {
+  width: 100%;
+  background-color: var(--surface-container-highest);
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--on-surface);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.md3-input:focus,
+.md3-textfield:focus {
+  outline: none;
+  background-color: var(--surface-container);
+  border-bottom-color: var(--primary);
+}
+
+.md3-input::placeholder,
+.md3-textfield::placeholder {
+  color: var(--on-surface-variant);
+  opacity: 0.6;
+}
+
+/* Glass header - flat opaque surface */
+.glass-header {
+  background-color: var(--surface-container-low);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+}
+
+.md3-button-primary,
+.md3-button {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border-radius: 100px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 14px;
+  border: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.md3-button-primary:hover,
+.md3-button:hover {
+  filter: brightness(1.05);
+}
+
+.md3-button-primary:active,
+.md3-button:active {
+  transform: scale(0.96);
+  filter: brightness(0.9);
+}
+
+.md3-button-primary:disabled,
+.md3-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+/* MD3 Select styling */
+select.md3-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+.progress-bar-fill {
+  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.hue-gradient {
+  background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+}
