@@ -34,8 +34,10 @@ export const TicketCodeInput: React.FC<Props> = ({ onSubmit, loading }) => {
   const KeyButton = ({ value, label, className = "" }: { value: string, label: React.ReactNode, className?: string }) => (
     <button
       type="button"
-      onClick={() => handleKeypadPress(value)}
-      onPointerDown={() => setPressedKey(value)}
+      onPointerDown={() => {
+        setPressedKey(value);
+        handleKeypadPress(value);
+      }}
       onPointerUp={() => setPressedKey(null)}
       onPointerLeave={() => setPressedKey(null)}
       onPointerCancel={() => setPressedKey(null)}
